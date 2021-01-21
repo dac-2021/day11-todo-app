@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   return <Todo />;
@@ -9,6 +9,17 @@ function App() {
 function Todo() {
   const [inputTask, setInputTask] = useState("");
   const [taskList, setTaskList] = useState([]);
+
+  // Lets read localStroage when component is loaded
+  useEffect(() => {
+    const strTaskList = localStorage.getItem("taskList");
+
+    // check for null and undefind
+    if (strTaskList) {
+      const objTaskList = JSON.parse(strTaskList);
+      setTaskList(objTaskList);
+    }
+  }, []);
 
   const processInputTask = (e) => setInputTask(e.target.value);
   const processTask = (item) => {
