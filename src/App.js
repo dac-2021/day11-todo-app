@@ -79,7 +79,9 @@ function Todo() {
       </div>
 
       {/** New/Incomplete Task List */}
-      <h5>InComplete Task </h5>
+      <h5>
+        InComplete Task {taskList.filter((item) => !item.complete).length}{" "}
+      </h5>
       {taskList
         .filter((item) => !item.complete)
         .map((item, index) => (
@@ -103,7 +105,9 @@ function Todo() {
 
       {/**Complete Task */}
       <br />
-      <h5>Completed Task</h5>
+      <h5>
+        Completed Task {taskList.filter((item) => item.complete).length}{" "}
+      </h5>
       {taskList
         .filter((item) => item.complete)
         .map((item, index) => (
