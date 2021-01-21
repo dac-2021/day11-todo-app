@@ -16,6 +16,13 @@ function Todo() {
   const processInputTask = (e) => setInputTask(e.target.value);
   const processTask = () => {};
 
+  const checkEnterKey = (e) => {
+    console.log(e.keyCode);
+    if (e.keyCode === 13) {
+      addNewTask();
+    }
+  };
+
   const addNewTask = () => {
     if (inputTask === "") {
       // alert("Task Can not be empty");
@@ -43,6 +50,7 @@ function Todo() {
           type="text"
           value={inputTask}
           onChange={processInputTask}
+          onKeyUp={checkEnterKey}
           placeholder="Add your task here"
         />
         <button onClick={addNewTask}>Add Task</button>
