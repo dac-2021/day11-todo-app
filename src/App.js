@@ -1,9 +1,38 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function App() {
-  return <Todo />;
+  return (
+    <Router>
+      <Link to="/">Page1 | </Link>
+      <Link to="/page2">Page2 | </Link>
+      <Link to="/page3">Page3 </Link>
+
+      <Route exact path="/">
+        <Page1 />
+      </Route>
+      <Route path="/page2">
+        <Page2 />
+      </Route>
+      <Route path="/page3">
+        <Page3 />
+      </Route>
+    </Router>
+  );
+}
+
+function Page1() {
+  return <div>Page1</div>;
+}
+
+function Page2() {
+  return <div>Page2</div>;
+}
+
+function Page3() {
+  return <div>Page3</div>;
 }
 
 function Todo() {
