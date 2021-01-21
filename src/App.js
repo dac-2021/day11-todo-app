@@ -30,7 +30,15 @@ function Navbar() {
 }
 
 function Login() {
-  return <div>Login</div>;
+  const history = useHistory();
+  return (
+    <div>
+      Login
+      <div>
+        <button onClick={() => history.push("/")}>Home</button>
+      </div>
+    </div>
+  );
 }
 
 function Page1() {
@@ -42,7 +50,15 @@ function Page2() {
 }
 
 function Page3() {
-  return <div>Page3</div>;
+  const history = useHistory();
+  return (
+    <div>
+      Page3
+      <div>
+        <button onClick={() => history.push("/login")}>LOGIN</button>
+      </div>
+    </div>
+  );
 }
 
 export default App;
