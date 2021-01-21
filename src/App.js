@@ -40,6 +40,22 @@ function Todo() {
     setInputTask("");
   };
 
+  const deleteTask = (item) => {
+    console.log("Calling Delete", item);
+
+    // Filter the Click Item
+    const newTaskList = taskList.filter((aitem) => {
+      if (aitem.id === item.id) {
+        // ignore this item
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+    setTaskList(newTaskList);
+  };
+
   return (
     <div>
       <h3>Todo Application</h3>
@@ -67,7 +83,13 @@ function Todo() {
               onChange={processTask}
             />
             <span style={{ marginLeft: "4px" }}>{item.task}</span>
-            <button style={{ marginLeft: "16px" }}>DEL</button>
+            <button
+              // onClick={deleteTask}
+              onClick={(e) => deleteTask(item)}
+              style={{ marginLeft: "16px" }}
+            >
+              DEL
+            </button>
           </div>
         ))}
 
