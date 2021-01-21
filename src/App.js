@@ -17,6 +17,11 @@ function Todo() {
   const processTask = () => {};
 
   const addNewTask = () => {
+    if (inputTask === "") {
+      // alert("Task Can not be empty");
+      return;
+    }
+
     // lets push hard coded new task
     const anewTask = {
       id: taskList.length + 1,
