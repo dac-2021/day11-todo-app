@@ -8,10 +8,7 @@ function App() {
 
 function Todo() {
   const [inputTask, setInputTask] = useState("");
-  const [taskList, setTaskList] = useState([
-    { id: 1, task: "Sample Task1", complete: false },
-    { id: 3, task: "Sample Task3", complete: true },
-  ]);
+  const [taskList, setTaskList] = useState([]);
 
   const processInputTask = (e) => setInputTask(e.target.value);
   const processTask = (item) => {
@@ -82,6 +79,14 @@ function Todo() {
       <h5>
         InComplete Task {taskList.filter((item) => !item.complete).length}{" "}
       </h5>
+
+      {/** Conditional JSX */}
+      {taskList.filter((item) => !item.complete).length === 0 && (
+        <h6 className="text-info">
+          Add your First Task; And Go to the KBC
+        </h6>
+      )}
+
       {taskList
         .filter((item) => !item.complete)
         .map((item, index) => (
@@ -113,6 +118,14 @@ function Todo() {
       <h5>
         Completed Task {taskList.filter((item) => item.complete).length}{" "}
       </h5>
+
+      {/** COnditioanl JSX */}
+      {taskList.filter((item) => item.complete).length === 0 && (
+        <h6 className="text-warning">
+          Hurray, There is No Task; Time for Holiday
+        </h6>
+      )}
+
       {taskList
         .filter((item) => item.complete)
         .map((item, index) => (
