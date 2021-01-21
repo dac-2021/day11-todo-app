@@ -9,11 +9,8 @@ function App() {
 function Todo() {
   const [inputTask, setInputTask] = useState("");
   const [taskList, setTaskList] = useState([
-    { id: 1, task: "Task1", complete: false },
-    { id: 2, task: "Task2", complete: true },
-    { id: 3, task: "Task3", complete: true },
-    { id: 4, task: "Task4", complete: false },
-    { id: 5, task: "Task5", complete: false },
+    { id: 1, task: "Sample Task1", complete: false },
+    { id: 3, task: "Sample Task3", complete: true },
   ]);
 
   const processInputTask = (e) => setInputTask(e.target.value);
