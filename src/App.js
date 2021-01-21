@@ -1,21 +1,63 @@
-import logo from "./logo.svg";
 import "./App.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  useLocation,
+  useHistory,
+} from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function App() {
   return (
     <Router>
-      <Link to="/">Page1 | </Link>
-      <Link to="/page2">Page2 | </Link>
-      <Link to="/page3">Page3 </Link>
+      <Route path="/login">
+        <Login />
+      </Route>
+
+      <Route exact path="/">
+        <Home />
+      </Route>
+    </Router>
+  );
+}
+
+function Login() {
+  let history = useHistory();
+
+  const gohome = () => history.push("/");
+
+  return (
+    <div>
+      Login
+      <button onClick={gohome}>HOME</button>
+    </div>
+  );
+}
+
+function Home() {
+  let location = useLocation();
+  console.log(location);
+
+  return (
+    <Router>
+      <Link to="/">Page 1 </Link>
+      <Link to="/page1">Page 1 </Link>
+      <Link to="/page2">Page 2 </Link>
+      <Link to="/page3">Page 3 </Link>
 
       <Route exact path="/">
         <Page1 />
       </Route>
+
+      <Route path="/page1">
+        <Page2 />
+      </Route>
+
       <Route path="/page2">
         <Page2 />
       </Route>
+
       <Route path="/page3">
         <Page3 />
       </Route>
@@ -32,7 +74,16 @@ function Page2() {
 }
 
 function Page3() {
-  return <div>Page3</div>;
+  const history = useHistory();
+
+  return (
+    <div>
+      Page3
+      <div>
+        <button onClick={() => history.replace("/login")}>Go Login</button>
+      </div>
+    </div>
+  );
 }
 
 function Todo() {
