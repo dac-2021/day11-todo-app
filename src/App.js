@@ -14,7 +14,13 @@ function Todo() {
   ]);
 
   const processInputTask = (e) => setInputTask(e.target.value);
-  const processTask = () => {};
+  const processTask = (item) => {
+    console.log("Process Task", item);
+
+    item.complete = !item.complete;
+
+    setTaskList([...taskList]);
+  };
 
   const checkEnterKey = (e) => {
     console.log(e.keyCode);
@@ -73,6 +79,7 @@ function Todo() {
       </div>
 
       {/** New/Incomplete Task List */}
+      <h5>InComplete Task </h5>
       {taskList
         .filter((item) => !item.complete)
         .map((item, index) => (
@@ -80,12 +87,13 @@ function Todo() {
             <input
               type="checkbox"
               checked={item.complete}
-              onChange={processTask}
+              // onChange={processTask}
+              onChange={() => processTask(item)}
             />
             <span style={{ marginLeft: "4px" }}>{item.task}</span>
             <button
               // onClick={deleteTask}
-              onClick={(e) => deleteTask(item)}
+              onClick={() => deleteTask(item)}
               style={{ marginLeft: "16px" }}
             >
               DEL
@@ -103,7 +111,8 @@ function Todo() {
             <input
               type="checkbox"
               checked={item.complete}
-              onChange={processTask}
+              // onChange={processTask}
+              onChange={(e) => processTask(item)}
             />
             <span style={{ marginLeft: "4px" }}>{item.task}</span>
             <button
