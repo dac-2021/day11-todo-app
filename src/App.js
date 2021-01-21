@@ -9,35 +9,18 @@ import {
 import { useState, useEffect } from "react";
 
 function App() {
-  let location = useLocation();
-  let history = useHistory();
-  console.log(location);
-
-  const [navToggle, setNavToggle] = useState(true);
-
-  history.listen((location, action) => console.log(location, action));
-
   return (
-    <Router>
-      {location.pathname !== "/login" && (
-        <>
-          <Link to="/">Page 1 </Link>
-          <Link to="/page1">Page 1 </Link>
-          <Link to="/page2">Page 2 </Link>
-          <Link to="/page3">Page 3 </Link>
-        </>
-      )}
-
-      <Route path="/login">
-        <Login />
-      </Route>
-
+    <>
       <Route exact path="/">
         <Page1 />
       </Route>
 
+      <Route exact path="/login">
+        <Login />
+      </Route>
+
       <Route path="/page1">
-        <Page2 />
+        <Page1 />
       </Route>
 
       <Route path="/page2">
@@ -47,13 +30,12 @@ function App() {
       <Route path="/page3">
         <Page3 />
       </Route>
-    </Router>
+    </>
   );
 }
 
 function Login() {
   let history = useHistory();
-
   const gohome = () => history.push("/");
 
   return (
