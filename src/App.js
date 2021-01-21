@@ -106,7 +106,12 @@ function Todo() {
               onChange={processTask}
             />
             <span style={{ marginLeft: "4px" }}>{item.task}</span>
-            <button style={{ marginLeft: "16px" }}>DEL</button>
+            <button
+              onClick={(e) => deleteTask(item)}
+              style={{ marginLeft: "16px" }}
+            >
+              DEL
+            </button>
           </div>
         ))}
     </div>
