@@ -12,6 +12,7 @@ function Todo() {
     { id: 2, task: "Task2", complete: true },
     { id: 3, task: "Task3", complete: true },
     { id: 4, task: "Task4", complete: false },
+    { id: 5, task: "Task5", complete: false },
   ]);
 
   const processTask = () => {};
@@ -27,17 +28,36 @@ function Todo() {
       </div>
 
       {/** New/Incomplete Task List */}
-      {taskList.map((item, index) => (
-        <div key={index}>
-          <input
-            type="checkbox"
-            checked={item.complete}
-            onChange={processTask}
-          />
-          <span style={{ marginLeft: "4px" }}>{item.task}</span>
-          <button style={{ marginLeft: "16px" }}>DEL</button>
-        </div>
-      ))}
+      {taskList
+        .filter((item) => !item.complete)
+        .map((item, index) => (
+          <div key={index}>
+            <input
+              type="checkbox"
+              checked={item.complete}
+              onChange={processTask}
+            />
+            <span style={{ marginLeft: "4px" }}>{item.task}</span>
+            <button style={{ marginLeft: "16px" }}>DEL</button>
+          </div>
+        ))}
+
+      {/**Complete Task */}
+      <br />
+      <h5>Completed Task</h5>
+      {taskList
+        .filter((item) => item.complete)
+        .map((item, index) => (
+          <div key={index}>
+            <input
+              type="checkbox"
+              checked={item.complete}
+              onChange={processTask}
+            />
+            <span style={{ marginLeft: "4px" }}>{item.task}</span>
+            <button style={{ marginLeft: "16px" }}>DEL</button>
+          </div>
+        ))}
     </div>
   );
 }
