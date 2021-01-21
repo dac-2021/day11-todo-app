@@ -21,6 +21,15 @@ function Todo() {
     }
   }, []);
 
+  // When Ever taskList is updated.
+  // Add Item
+  // Update Item
+  // Delete Item
+  useEffect(() => {
+    const strTask = JSON.stringify(taskList);
+    localStorage.setItem("taskList", strTask);
+  }, [taskList]);
+
   const processInputTask = (e) => setInputTask(e.target.value);
   const processTask = (item) => {
     console.log("Process Task", item);
