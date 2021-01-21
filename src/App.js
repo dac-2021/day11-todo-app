@@ -7,6 +7,7 @@ function App() {
 }
 
 function Todo() {
+  const [inputTask, setInputTask] = useState("");
   const [taskList, setTaskList] = useState([
     { id: 1, task: "Task1", complete: false },
     { id: 2, task: "Task2", complete: true },
@@ -15,7 +16,20 @@ function Todo() {
     { id: 5, task: "Task5", complete: false },
   ]);
 
+  const processInputTask = (e) => setInputTask(e.target.value);
   const processTask = () => {};
+
+  const addNewTask = () => {
+    // lets push hard coded new task
+    const anewTask = {
+      id: taskList.length + 1,
+      task: inputTask,
+      complete: false,
+    };
+
+    setTaskList([anewTask, ...taskList]);
+    setInputTask("");
+  };
 
   return (
     <div>
@@ -23,8 +37,13 @@ function Todo() {
 
       {/** Input Block */}
       <div>
-        <input type="text" placeholder="Add your task here" />
-        <button>Add Task</button>
+        <input
+          type="text"
+          value={inputTask}
+          onChange={processInputTask}
+          placeholder="Add your task here"
+        />
+        <button onClick={addNewTask}>Add Task</button>
       </div>
 
       {/** New/Incomplete Task List */}
