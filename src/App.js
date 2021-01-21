@@ -7,11 +7,11 @@ function App() {
 
   return (
     <>
-      <Route exact to="/" component={Page1} />
-      <Route exact to="/page1" component={Page1} />
+      <Route exact path="/" component={Page1} />
+      <Route path="/page1" component={Page1} />
 
-      <Route exact to="/page2" component={Page2} />
-      <Route exact to="/page3" component={Page3} />
+      <Route path="/page2" component={Page2} />
+      <Route path="/page3" component={Page3} />
     </>
   );
 }
@@ -25,16 +25,7 @@ function Page2() {
 }
 
 function Page3() {
-  const history = useHistory();
-
-  return (
-    <div>
-      Page3
-      <div>
-        <button onClick={() => history.push("/login")}>Go Login</button>
-      </div>
-    </div>
-  );
+  return <div>Page3</div>;
 }
 
 export default App;
