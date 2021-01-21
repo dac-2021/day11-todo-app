@@ -9,42 +9,28 @@ import {
 import { useState, useEffect } from "react";
 
 function App() {
+  let location = useLocation();
+  let history = useHistory();
+  console.log(location);
+
+  const [navToggle, setNavToggle] = useState(true);
+
+  history.listen((location, action) => console.log(location, action));
+
   return (
     <Router>
+      {location.pathname !== "/login" && (
+        <>
+          <Link to="/">Page 1 </Link>
+          <Link to="/page1">Page 1 </Link>
+          <Link to="/page2">Page 2 </Link>
+          <Link to="/page3">Page 3 </Link>
+        </>
+      )}
+
       <Route path="/login">
         <Login />
       </Route>
-
-      <Route exact path="/">
-        <Home />
-      </Route>
-    </Router>
-  );
-}
-
-function Login() {
-  let history = useHistory();
-
-  const gohome = () => history.push("/");
-
-  return (
-    <div>
-      Login
-      <button onClick={gohome}>HOME</button>
-    </div>
-  );
-}
-
-function Home() {
-  let location = useLocation();
-  console.log(location);
-
-  return (
-    <Router>
-      <Link to="/">Page 1 </Link>
-      <Link to="/page1">Page 1 </Link>
-      <Link to="/page2">Page 2 </Link>
-      <Link to="/page3">Page 3 </Link>
 
       <Route exact path="/">
         <Page1 />
@@ -65,6 +51,19 @@ function Home() {
   );
 }
 
+function Login() {
+  let history = useHistory();
+
+  const gohome = () => history.push("/");
+
+  return (
+    <div>
+      Login
+      <button onClick={gohome}>HOME</button>
+    </div>
+  );
+}
+
 function Page1() {
   return <div>Page1</div>;
 }
@@ -80,7 +79,7 @@ function Page3() {
     <div>
       Page3
       <div>
-        <button onClick={() => history.replace("/login")}>Go Login</button>
+        <button onClick={() => history.push("/login")}>Go Login</button>
       </div>
     </div>
   );
