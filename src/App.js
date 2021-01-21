@@ -92,7 +92,12 @@ function Todo() {
               // onChange={processTask}
               onChange={() => processTask(item)}
             />
-            <span style={{ marginLeft: "4px" }}>{item.task}</span>
+            <span
+              onClick={() => processTask(item)}
+              style={{ marginLeft: "4px", cursor: "pointer" }}
+            >
+              {item.task}
+            </span>
             <button
               // onClick={deleteTask}
               onClick={() => deleteTask(item)}
@@ -118,7 +123,12 @@ function Todo() {
               // onChange={processTask}
               onChange={(e) => processTask(item)}
             />
-            <span style={{ marginLeft: "4px" }}>{item.task}</span>
+            <span
+              onClick={() => processTask(item)}
+              style={{ marginLeft: "4px", cursor: "pointer" }}
+            >
+              {item.task}
+            </span>
             <button
               onClick={(e) => deleteTask(item)}
               style={{ marginLeft: "16px" }}
