@@ -11,24 +11,17 @@ function Todo() {
   const [taskList, setTaskList] = useState([]);
 
   // Lets read localStroage when component is loaded
+  // We are making actual ajax call to ur server.
   useEffect(() => {
-    const strTaskList = localStorage.getItem("taskList");
+    const fetchData = async () => {
+      const url = "http://localhost:4000/readtodo";
+      const res = await fetch(url);
+      const list = await res.json();
+      setTaskList(list);
+    };
 
-    // check for null and undefind
-    if (strTaskList) {
-      const objTaskList = JSON.parse(strTaskList);
-      setTaskList(objTaskList);
-    }
+    fetchData();
   }, []);
-
-  // When Ever taskList is updated.
-  // Add Item
-  // Update Item
-  // Delete Item
-  useEffect(() => {
-    const strTask = JSON.stringify(taskList);
-    localStorage.setItem("taskList", strTask);
-  }, [taskList]);
 
   const processInputTask = (e) => setInputTask(e.target.value);
   const processTask = (item) => {
