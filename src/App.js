@@ -46,7 +46,7 @@ function Todo() {
     }
   };
 
-  const addNewTask = () => {
+  const addNewTask = async () => {
     if (inputTask === "") {
       // alert("Task Can not be empty");
       return;
@@ -58,6 +58,10 @@ function Todo() {
       task: inputTask,
       complete: false,
     };
+
+    // ajax call
+    const url = `http://localhost:4000/?task=${inputTask}`;
+    await fetch(url);
 
     setTaskList([anewTask, ...taskList]);
     setInputTask("");
