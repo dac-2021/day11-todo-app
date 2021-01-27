@@ -59,9 +59,15 @@ function Todo() {
       complete: false,
     };
 
-    // ajax call
-    const url = `http://localhost:4000/?task=${inputTask}`;
-    await fetch(url);
+    // ajax call :: POST
+    const url = `http://localhost:4000/`;
+    await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(anewTask),
+    });
 
     setTaskList([anewTask, ...taskList]);
     setInputTask("");
