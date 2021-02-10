@@ -5,9 +5,20 @@ import "bootstrap/dist/css/bootstrap.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+const One = (props) => <Two boop>one {props.children}</Two>;
+
+const Two = (props) =>
+  props.beep ? (
+    <Three>two {props.children}</Three>
+  ) : (
+    <Two beep {...props} />
+  );
+
+const Three = (props) => <span>three</span>;
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <One>Producement</One>
   </React.StrictMode>,
   document.getElementById("root")
 );
